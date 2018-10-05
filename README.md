@@ -18,8 +18,12 @@ part-of-speech tagging. Please see the Python NLTK for that sort of
 functionality (plus much, much more).
 
 The original code and documentation was authored by Christian Peccei
-(cpeccei@hotmail.com) and is available in PyPI under the package name
-`textmining`. This package is a port to Python 3 and published under the package
+(cpeccei@hotmail.com) in 2010 and is available in PyPI under the package name
+`textmining`. You can read more about it on his website 
+https://www.christianpeccei.com/textmining/ and find the original code and PyPI
+package here https://pypi.org/project/textmining/.
+
+This package is a port to Python 3 and published under the package
 name `textmining3`.
 
 Installation
@@ -30,13 +34,13 @@ Clone this repository and run
 python setup.py install
 ```
 
-or install from PyPI with
+or install from PyPI with (TODO: publish to PyPI)
 
 ```
 pip install textmining3
 ```
 
-or install from Anaconda Cloud with
+or install from Anaconda Cloud with (TODO: publish to Conda)
 
 ```
 conda install textmining3
