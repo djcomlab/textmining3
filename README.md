@@ -1,5 +1,7 @@
 # Python textmining3 package
 
+[![PyPI version](https://badge.fury.io/py/textmining3.svg)](https://badge.fury.io/py/textmining3)
+
 ## Overview
 This package contains a variety of useful functions for text mining in Python.
 It focuses on statistical text mining (i.e. the bag-of-words model) and makes it
