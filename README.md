@@ -34,16 +34,9 @@ Clone this repository and run
 python setup.py install
 ```
 
-or install from PyPI with (TODO: publish to PyPI)
-
+or install from PyPI with
 ```
 pip install textmining3
-```
-
-or install from Anaconda Cloud with (TODO: publish to Conda)
-
-```
-conda install textmining3
 ```
 
 Documentation
