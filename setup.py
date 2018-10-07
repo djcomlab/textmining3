@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='textmining3',
       version='0.1',
@@ -46,7 +46,9 @@ functionality (plus much, much more).
 
 The original code and documentation was authored by Christian Peccei
 (cpeccei@hotmail.com) and is available in PyPI under the package name
-textmining. This package is a port to Python 3 and published under the package
+textmining.
+
+This package is a port to Python 3 and published under the package
 name textmining3, and is based on the original.
 """
      )
