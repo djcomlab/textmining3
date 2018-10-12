@@ -1,22 +1,33 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-from setuptools import setup
+"""The setup script."""
 
-setup(name='textmining3',
-      version='0.1',
-      description='Text Mining Utilities for Python 3',
-      author='David Johnson',
-      author_email='djcomlab@gmail.com',
-      url='',
-      packages=['textmining'],
-      package_data={'textmining': ['data/*', 'doc/*', 'examples/*']},
-      classifiers=[
+from setuptools import setup, find_packages
+
+with open('README.rst') as readme_file:
+    readme = readme_file.read()
+
+with open('HISTORY.rst') as history_file:
+    history = history_file.read()
+
+requirements = ['Click>=6.0', ]
+
+setup_requirements = [ ]
+
+test_requirements = [ ]
+
+setup(
+    author="David Johnson",
+    author_email='djcomlab@gmail.com',
+    classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
-        'License :: OSI Approved :: GNU General Public License (GPL)',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Natural Language :: English',
         'Operating System :: OS Independent',
+        'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
@@ -25,30 +36,24 @@ setup(name='textmining3',
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Topic :: Text Processing :: General',
         'Topic :: Text Processing :: Linguistic'
+    ],
+    description="Text Mining Utilities for Python 3",
+    entry_points={
+        'console_scripts': [
+            'textmining=textmining.cli:main',
         ],
-      long_description="""
-This package contains a variety of useful functions for text mining in Python 3.
-
-It focuses on statistical text mining (i.e. the bag-of-words model) and makes it
-very easy to create a term-document matrix from a collection of documents. This
-matrix can then be read into a statistical package (R, MATLAB, etc.) for further
-analysis. The package also provides some useful utilities for finding
-collocations (i.e. significant two-word phrases), computing the edit distance
-between words, and chunking long documents up into smaller pieces.
-
-The package has a large amount of curated data (stopwords, common names, an
-English dictionary with parts of speech and word frequencies) which allows the
-user to extract fairly sophisticated features from a document.
-
-This package does NOT have any natural language processing capabilities such as
-part-of-speech tagging. Please see the Python NLTK for that sort of
-functionality (plus much, much more).
-
-The original code and documentation was authored by Christian Peccei
-(cpeccei@hotmail.com) and is available in PyPI under the package name
-textmining.
-
-This package is a port to Python 3 and published under the package
-name textmining3, and is based on the original.
-"""
-     )
+    },
+    install_requires=requirements,
+    license="GNU General Public License v3",
+    long_description=readme + '\n\n' + history,
+    include_package_data=True,
+    keywords='textmining',
+    name='textmining',
+    packages=find_packages(include=['textmining']),
+    setup_requires=setup_requirements,
+    test_suite='tests',
+    tests_require=test_requirements,
+    url='https://github.com/djcomlab/textmining3',
+    version='1.0.1',
+    zip_safe=False,
+)

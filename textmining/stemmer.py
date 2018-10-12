@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """Porter Stemming Algorithm
 This is the Porter stemming algorithm, ported to Python from the
 version coded up in ANSI C by the author. It may be be regarded
