@@ -39,7 +39,7 @@ class TestTextmining(unittest.TestCase):
 
     """
         self.splitby_lines1 = ['', '', '    Hello there',
-                              '    how are you today?']
+                               '    how are you today?']
         self.splitby_lines2 = ['', '    I hope you', '    are doing well.']
         self.splitby_lines3 = ['',
                                '    Thanks for using the textmining module!']
@@ -100,6 +100,7 @@ class TestTextmining(unittest.TestCase):
 
     def test_splitby_custom(self):
         lines = self.text2.splitlines()
+
         def document_boundary(line1, line2):
             return line2.strip().startswith('Document')
         paragraphs = textmining.splitby(lines, document_boundary)

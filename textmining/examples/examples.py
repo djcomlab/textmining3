@@ -1,6 +1,7 @@
 import textmining
 import os
 
+
 def termdocumentmatrix_example():
     # Create some very short sample documents
     doc1 = 'John and Bob are brothers.'
@@ -24,6 +25,7 @@ def termdocumentmatrix_example():
     print('\ntermdocumentmatrix_example 1\n')
     for row in tdm.rows(cutoff=1):
         print(row)
+
 
 def splitby_example():
     # The splitby function in the textmining package is very useful. It
@@ -99,10 +101,11 @@ def splitby_example():
         print('\n'.join(clean_lines))
         print()
 
+
 def dictionary_example():
     # Print ten most common words in the dictionary
-    freq_word = [(list(counts)[0][0], word) for (word, counts) in \
-      textmining.dictionary.items()]
+    freq_word = [(list(counts)[0][0], word) for (word, counts) in
+                 textmining.dictionary.items()]
     freq_word.sort(reverse=True)
     print('\ndictionary_example 1\n')
     for freq, word in freq_word[:10]:
@@ -116,6 +119,7 @@ def dictionary_example():
     # word 'open'.
     print('\ndictionary_example 2\n')
     print(textmining.dictionary['open'])
+
 
 def names_example():
     # The textmining module contains three dictionaries of names:
@@ -135,6 +139,7 @@ def names_example():
     for freq, name in f[:10]:
         print(name, freq)
 
+
 def bigram_collocations_example():
     # Find the 10 most statistically significant two word phrases in the
     # full text of 'The Adventures of Sherlock Holmes'
@@ -146,6 +151,7 @@ def bigram_collocations_example():
     print('\nbigram_collocations_example 1\n')
     for bigram in bigrams[:10]:
         print(' '.join(bigram))
+
 
 # Run each of the examples
 termdocumentmatrix_example()

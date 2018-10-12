@@ -11,6 +11,7 @@ import os
 
 data_dir = os.path.join(__path__[0], 'data')
 
+
 def read_stopwords():
     """Return a set of stopwords stored in textmining.stopwords"""
     stopwords = set()
@@ -22,6 +23,7 @@ def read_stopwords():
         stopwords.add(word)
     f.close()
     return stopwords
+
 
 def read_dictionary():
     """
@@ -47,6 +49,7 @@ def read_dictionary():
     f.close()
     return dictionary
 
+
 def read_names(name_file):
     """
     Read name file and return a dict containing names and frequencies.
@@ -63,12 +66,14 @@ def read_names(name_file):
     f.close()
     return names
 
+
 # Initialize useful data for text mining
 names_male = read_names('names_male.txt')
 names_female = read_names('names_female.txt')
 names_last = read_names('names_last.txt')
 dictionary = read_dictionary()
 stopwords = read_stopwords()
+
 
 def simple_tokenize(document):
     """
@@ -79,6 +84,7 @@ def simple_tokenize(document):
     document = document.lower()
     document = re.sub('[^a-z]', ' ', document)
     return document.strip().split()
+
 
 def simple_tokenize_remove_stopwords(document):
     """
@@ -92,6 +98,7 @@ def simple_tokenize_remove_stopwords(document):
     # Remove stopwords
     words = [word for word in words if word not in stopwords]
     return words
+
 
 def collapse_ngrams(words, ngrams):
     """
@@ -121,6 +128,7 @@ def collapse_ngrams(words, ngrams):
         wordstring = wordstring.replace(old, new)
     return wordstring.split('|')
 
+
 def stem(word):
     """
     Returns Porter stemmed version of words.
@@ -133,6 +141,7 @@ def stem(word):
     else:
         # Assume input is a list ot words
         return [p.stem(w, 0, len(w) - 1) for w in word]
+
 
 def editdistance(a, b):
     """
@@ -155,8 +164,9 @@ def editdistance(a, b):
             current[j] = min(add, delete, change)
     return current[n]
 
+
 def readblocks(source,
-               isnewblock=lambda x,y: x.strip() and not y.strip()):
+               isnewblock=lambda x, y: x.strip() and not y.strip()):
     """
     Returns a generator for iterating over blocks of lines.
     The isnewblock function must take in two lines and return a boolean
@@ -185,6 +195,7 @@ def paragraph_boundary(line1, line2):
     """
     return line1.strip() and not line2.strip()
 
+
 def splitby(source, split=paragraph_boundary):
     """
     Split an iterator into groups using a function to define split boundaries.
@@ -203,6 +214,7 @@ def splitby(source, split=paragraph_boundary):
             group = []
         group.append(b)
     yield group
+
 
 def bigram_collocations(words, power=3):
     """
@@ -284,8 +296,8 @@ class TermDocumentMatrix(object):
     def rows(self, cutoff=2):
         """Helper function that returns rows of term-document matrix."""
         # Get master list of words that meet or exceed the cutoff frequency
-        words = [word for word in self.doc_count \
-          if self.doc_count[word] >= cutoff]
+        words = [word for word in self.doc_count
+                 if self.doc_count[word] >= cutoff]
         # Return header
         yield words
         # Loop over rows
