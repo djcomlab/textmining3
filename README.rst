@@ -4,13 +4,13 @@ textmining
 
 
 .. image:: https://img.shields.io/pypi/v/textmining.svg
-        :target: https://pypi.python.org/pypi/textmining
+        :target: https://pypi.python.org/pypi/textmining3
 
-.. image:: https://img.shields.io/travis/djcomlab/textmining.svg
-        :target: https://travis-ci.org/djcomlab/textmining
+.. image:: https://img.shields.io/travis/djcomlab/textmining3.svg
+        :target: https://travis-ci.org/djcomlab/textmining3
 
-.. image:: https://readthedocs.org/projects/textmining/badge/?version=latest
-        :target: https://textmining.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/textmining3/badge/?version=latest
+        :target: https://textmining3.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
 
@@ -20,7 +20,7 @@ Text Mining Utilities for Python 3
 
 
 * Free software: GNU General Public License v3
-* Documentation: https://textmining.readthedocs.io.
+* Documentation: https://textmining3.readthedocs.io.
 
 
 Features
