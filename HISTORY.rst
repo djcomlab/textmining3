@@ -2,6 +2,9 @@
 History
 =======
 
+1.1.0 (2018-13-19)
+* Introduce Pandas support
+
 1.0.2 (2018-12-19)
 ------------------
 * First port of textmining to Python 3
