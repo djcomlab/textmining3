@@ -1,6 +1,6 @@
-==========
-textmining
-==========
+===========
+textmining3
+===========
 
 
 .. image:: https://img.shields.io/pypi/v/textmining.svg
