@@ -1,9 +1,16 @@
+# -*- coding: utf-8 -*-
+
+"""Top-level package for textmining."""
+
+__version__ = '1.0.1'
+
 from . import stemmer
 import re
 import csv
 import os
 
 data_dir = os.path.join(__path__[0], 'data')
+
 
 def read_stopwords():
     """Return a set of stopwords stored in textmining.stopwords"""
@@ -17,21 +24,19 @@ def read_stopwords():
     f.close()
     return stopwords
 
+
 def read_dictionary():
     """
     Return a dict containing an English dictionary with word frequencies.
     Stored in textmining.dictionary upon initialization.
-
     This English dictionary was created by processing the
     unlemmatized word frequency list from the National British
     Corpus found at http://www.kilgarriff.co.uk/bnc-readme.html
-
     Each line contains a word followed by the relative frequency of its use
     as different parts of speech in the corpus. Please see the file
     poscodes.html in this module's doc directory for a list of the codes.
     The file is also available online at
     http://www.kilgarriff.co.uk/BNClists/poscodes.html
-
     """
     dictionary = {}
     f = open(os.path.join(data_dir, 'dictionary.txt'))
@@ -44,16 +49,14 @@ def read_dictionary():
     f.close()
     return dictionary
 
+
 def read_names(name_file):
     """
     Read name file and return a dict containing names and frequencies.
-
     Three name variables are created upon initialization:
     textmining.names_male, textmining.names_female, textmining.names_last
-
     The name files are from the US Census Bureau at
     http://www.census.gov/genealogy/names/names_files.html
-
     """
     names = {}
     f = open(os.path.join(data_dir, name_file))
@@ -63,6 +66,7 @@ def read_names(name_file):
     f.close()
     return names
 
+
 # Initialize useful data for text mining
 names_male = read_names('names_male.txt')
 names_female = read_names('names_female.txt')
@@ -70,25 +74,23 @@ names_last = read_names('names_last.txt')
 dictionary = read_dictionary()
 stopwords = read_stopwords()
 
+
 def simple_tokenize(document):
     """
     Clean up a document and split into a list of words.
-
     Converts document (a string) to lowercase and strips out everything which
     is not a lowercase letter.
-
     """
     document = document.lower()
     document = re.sub('[^a-z]', ' ', document)
     return document.strip().split()
 
+
 def simple_tokenize_remove_stopwords(document):
     """
     Clean up a document and split into a list of words, removing stopwords.
-
     Converts document (a string) to lowercase and strips out everything
     which is not a lowercase letter. Then removes stopwords.
-
     """
     document = document.lower()
     document = re.sub('[^a-z]', ' ', document)
@@ -96,6 +98,7 @@ def simple_tokenize_remove_stopwords(document):
     # Remove stopwords
     words = [word for word in words if word not in stopwords]
     return words
+
 
 def collapse_ngrams(words, ngrams):
     """
@@ -105,18 +108,13 @@ def collapse_ngrams(words, ngrams):
     easy to use bigram_collocations to find significant two-word phrases in
     a corpus and then use collapse_ngrams to build a tokenizer that treats
     these phrases as single tokens.
-
     Note: the input words should not contain any "|" or "_" characters as
     these are used internally by the algorithm and may confuse it.
-
     Example:
-
     words = ['new', 'york', 'city', 'is', 'the', 'big', 'apple']
     ngrams = [('new', 'york', 'city'), ('big', 'apple')]
-
     collapse_ngrams(words, ngrams) then gives:
     ['new_york_city', 'is', 'the', 'big_apple']
-
     """
     # Check that words are free of special characters
     testwords = ''.join(words)
@@ -130,12 +128,11 @@ def collapse_ngrams(words, ngrams):
         wordstring = wordstring.replace(old, new)
     return wordstring.split('|')
 
+
 def stem(word):
     """
     Returns Porter stemmed version of words.
-
     Input can either be a string or list of strings.
-
     """
     p = stemmer.PorterStemmer()
     if isinstance(word, str):
@@ -145,12 +142,11 @@ def stem(word):
         # Assume input is a list ot words
         return [p.stem(w, 0, len(w) - 1) for w in word]
 
+
 def editdistance(a, b):
     """
     Calculates the Levenshtein distance between a and b.
-
     From http://hetland.org/coding/python/levenshtein.py
-
     """
     n, m = len(a), len(b)
     if n > m:
@@ -168,16 +164,15 @@ def editdistance(a, b):
             current[j] = min(add, delete, change)
     return current[n]
 
+
 def readblocks(source,
-               isnewblock=lambda x,y: x.strip() and not y.strip()):
+               isnewblock=lambda x, y: x.strip() and not y.strip()):
     """
     Returns a generator for iterating over blocks of lines.
-
     The isnewblock function must take in two lines and return a boolean
     indicating whether there is a block separator between them. The default
     function reads by paragraph (i.e. if the first line is all spaces and
     the next contains text then it is a new block).
-
     """
     block = None
     for b in source:
@@ -194,22 +189,19 @@ def readblocks(source,
 def paragraph_boundary(line1, line2):
     """
     Returns True if a paragraph boundary falls between line1 and line2.
-
     A helper function for the splitby function. Given two strings containing
     successive lines from a text document, this will return True if line1 is
     the end of a paragraph (i.e. if line1 has text and line2 is blank).
-
     """
     return line1.strip() and not line2.strip()
+
 
 def splitby(source, split=paragraph_boundary):
     """
     Split an iterator into groups using a function to define split boundaries.
-
     The split function should take in two successive elements of the source
     iterator and return a boolean indicating whether there is group boundary
     between them. The default function splits by paragraph.
-
     """
     group = None
     for b in source:
@@ -223,18 +215,16 @@ def splitby(source, split=paragraph_boundary):
         group.append(b)
     yield group
 
+
 def bigram_collocations(words, power=3):
     """
     Find bigram collocations in a list of words.
-
     Given a list of words (usually a long list, such as a novel)
     this will return a list of bigram collocations (i.e. two-word
     phrases that occur more often than would be expected by chance).
     Stronger collocations appear at the start of the list.
-
     This code was adapted from the collocation code in
     http://www.semanticbible.com/other/talks/2008/nltk/nltk.html
-
     """
     # Count frequency of each separate word
     word_count = {}
@@ -267,18 +257,15 @@ class TermDocumentMatrix(object):
 
     """
     Class to efficiently create a term-document matrix.
-
     The only initialization parameter is a tokenizer function, which should
     take in a single string representing a document and return a list of
     strings representing the tokens in the document. If the tokenizer
     parameter is omitted it defaults to using textmining.simple_tokenize
-
     Use the add_doc method to add a document (document is a string). Use the
     write_csv method to output the current term-document matrix to a csv
     file. You can use the rows method to return the rows of the matrix if
     you wish to access the individual elements without writing directly to a
     file.
-
     """
 
     def __init__(self, tokenizer=simple_tokenize):
@@ -309,8 +296,8 @@ class TermDocumentMatrix(object):
     def rows(self, cutoff=2):
         """Helper function that returns rows of term-document matrix."""
         # Get master list of words that meet or exceed the cutoff frequency
-        words = [word for word in self.doc_count \
-          if self.doc_count[word] >= cutoff]
+        words = [word for word in self.doc_count
+                 if self.doc_count[word] >= cutoff]
         # Return header
         yield words
         # Loop over rows
@@ -323,26 +310,11 @@ class TermDocumentMatrix(object):
     def write_csv(self, filename, cutoff=2):
         """
         Write term-document matrix to a CSV file.
-
         filename is the name of the output file (e.g. 'mymatrix.csv').
         cutoff is an integer that specifies only words which appear in
         'cutoff' or more documents should be written out as columns in
         the matrix.
-
         """
         f = csv.writer(open(filename, 'w'))
         for row in self.rows(cutoff=cutoff):
             f.writerow(row)
-
-    def to_df(self, cutoff=2):
-        """
-        Write term-document matrix to a Pandas DataFrame.
-
-        cutoff is an integer that specifies only words which appear in
-        'cutoff' or more documents should be written out as columns in
-        the matrix.
-        """
-        import pandas as pd  # if pandas not available will throw ImportError
-        rows = self.rows(cutoff=cutoff)
-        header = next(rows)
-        return pd.DataFrame(rows, columns=header)

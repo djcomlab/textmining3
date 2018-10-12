@@ -1,0 +1,23 @@
+language: python
+python:
+- 3.6
+- pypy3
+matrix:
+  include:
+  - os: linux
+    python: 3.7
+    env: TOXENV=py37
+    sudo: true
+    dist: xenial
+install: pip install -U tox-travis
+script: tox
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: djcomlab
+  password:
+    secure: BIg7Cb2wz+IHdYTDyzb1EMGpbBRXhops7lP1QRVQfxVLMB7OtcjwQ0vweg794/S6e3d2ChyEIW8sjynzIzmZ5agqS94xWE/NLFFZmorojreGOBmaGAMB1nlBmFMMRHHUDH2iLPIUh3mUdC9ZYkS7pAVbq84WvVKIPDTCHXn2t9TRyJ71drPVsfsv7qqpSK5d7U7Y8uZr0P+WWR3ERGWFU2WgSYAToQd0Mt/j0S1U9KmLH57eCt5a1xVhZWF3GFQYU0q7NiXoBvuW1wQblQu8LlAkE3W4gARlQm5mqlosIEfEYS6CGnlCAQYtLs3AgspOtNhTeCTGVKWdinDxiu513NT0zCW3xoBe3Fg3cFYgZSv/ZnmNCTP2zLVMNsLYVh9BN2e13odc2DjSOnmq4vyS1yWyBH7j5RA2W/cEBDbakj9jW4LaaLmiXb49Axm8XXVWA4yBPktYDClitKilgU3MkvGNgCrCam/DcpMXoiMwLGOhLowzWmvgsryyzdnZWJLSX0P+xCh/Ggle5goEfrjzNUT60+oJudwUr7RGI3Lp5cMRYE1KACiVEbm3qGPYxAR091floT8n6SMl2HMtwW7S2rTQxpqa1/ZdSAPvetaAel7kAMDRWutN+XhQDTxg7Xjd1gLETB9WSjZiyQv3ShAlQIvJlyMrRLVqJZPiXm0P9lo=
+  on:
+    tags: true
+    repo: djcomlab/textmining3
+    python: 3.6
