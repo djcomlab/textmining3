@@ -3,6 +3,16 @@
 [![PyPI version](https://badge.fury.io/py/textmining3.svg)](https://badge.fury.io/py/textmining3)
 
 ## Overview
+
+The original code and documentation was authored by Christian Peccei
+(cpeccei@hotmail.com) in 2010 and is available in PyPI under the package name
+`textmining`. You can read more about it on his website 
+https://www.christianpeccei.com/textmining/ and find the original code and PyPI
+package here https://pypi.org/project/textmining/.
+
+This package is a port to Python 3 and published under the package
+name `textmining3`.
+
 This package contains a variety of useful functions for text mining in Python.
 It focuses on statistical text mining (i.e. the bag-of-words model) and makes it
 very easy to create a term-document matrix from a collection of documents. This
@@ -18,15 +28,6 @@ user to extract fairly sophisticated features from a document.
 This package does NOT have any natural language processing capabilities such as
 part-of-speech tagging. Please see the Python NLTK for that sort of
 functionality (plus much, much more).
-
-The original code and documentation was authored by Christian Peccei
-(cpeccei@hotmail.com) in 2010 and is available in PyPI under the package name
-`textmining`. You can read more about it on his website 
-https://www.christianpeccei.com/textmining/ and find the original code and PyPI
-package here https://pypi.org/project/textmining/.
-
-This package is a port to Python 3 and published under the package
-name `textmining3`.
 
 Installation
 ------------
