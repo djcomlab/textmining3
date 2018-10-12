@@ -318,3 +318,14 @@ class TermDocumentMatrix(object):
         f = csv.writer(open(filename, 'w'))
         for row in self.rows(cutoff=cutoff):
             f.writerow(row)
+
+    def to_df(self, cutoff=2):
+        """
+        Write term-document matrix to a Pandas DataFrame.
+        cutoff is an integer that specifies only words which appear in
+        'cutoff' or more documents should be written out as columns in
+        the matrix.
+        """
+        import pandas as pd  # if pandas not available will throw ImportError
+        rows = self.rows(cutoff=cutoff)
+        header = next(rows)
