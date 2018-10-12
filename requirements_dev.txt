@@ -2,7 +2,7 @@ pip==18.1
 bumpversion==0.5.3
 wheel==0.32.1
 watchdog==0.9.0
-flake8==3.5.0
+-e git+https://gitlab.com/pycqa/flake8@9631dac52aa6ed8a3de9d0983c3c7b0267ae7d6d#egg=flake8
 tox==3.5.2
 coverage==4.5.1
 Sphinx==1.8.1
