@@ -50,6 +50,7 @@ setup(
     keywords='textmining',
     name='textmining',
     packages=find_packages(include=['textmining']),
+    package_data={'textmining': ['data/*', 'doc/*', 'examples/*']},
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
