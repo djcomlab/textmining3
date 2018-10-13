@@ -319,7 +319,6 @@ class TermDocumentMatrix(object):
         to write our the CSV file, otherwise it will use the csv package.
         """
         try:  # if pandas available, write DataFrame to CSV
-            import pandas as pd
             tdm_df = self.to_df(cutoff=cutoff)
             tdm_df.to_csv(filename, index=False)
         except ImportError:
