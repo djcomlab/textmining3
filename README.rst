@@ -21,6 +21,7 @@ Text Mining Utilities for Python 3
 
 * Free software: GNU General Public License v3
 * Documentation: https://textmining3.readthedocs.io.
+* Requires Python >= 3.6
 
 
 Features
