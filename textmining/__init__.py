@@ -314,18 +314,32 @@ class TermDocumentMatrix(object):
         cutoff is an integer that specifies only words which appear in
         'cutoff' or more documents should be written out as columns in
         the matrix.
+
+        If the pandas package is installed, this function will use it
+        to write our the CSV file, otherwise it will use the csv package.
         """
-        f = csv.writer(open(filename, 'w'))
-        for row in self.rows(cutoff=cutoff):
-            f.writerow(row)
+        try:  # if pandas available, write DataFrame to CSV
+            import pandas as import pd
+            tdm_df = self.to_df(cutoff=cutoff)
+            tdm_df.to_csv(filename, index=False)
+        except ImportError:
+            f = csv.writer(open(filename, 'w'))
+            for row in self.rows(cutoff=cutoff):
+                f.writerow(row)
 
     def to_df(self, cutoff=2):
         """
-        Write term-document matrix to a Pandas DataFrame.
+        Write term-document matrix to a pandas DataFrame.
         cutoff is an integer that specifies only words which appear in
         'cutoff' or more documents should be written out as columns in
         the matrix.
         """
-        import pandas as pd  # if pandas not available will throw ImportError
-        rows = self.rows(cutoff=cutoff)
-        header = next(rows)
+        try:
+            import pandas as pd
+            rows = self.rows(cutoff=cutoff)
+            header = next(rows)
+            return pd.DataFrame(rows, columns=header)
+        except ImportError:
+            raise ImportError("pandas is not available in your system. Please"
+                              "install pandas to use this feature, or use the"
+                              "write_csv() function instead.")

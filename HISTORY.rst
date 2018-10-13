@@ -3,7 +3,8 @@ History
 =======
 
 1.1.0 (2018-13-19)
-* Introduce Pandas support
+------------------
+* Add new feature to export DTM to pandas.DataFrame
 
 1.0.2 (2018-12-19)
 ------------------
